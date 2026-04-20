@@ -1,13 +1,21 @@
-import { Button , CssBaseline } from '@mui/material'
+import { Button, CssBaseline, TextField, Slider, Stack, Container } from '@mui/material'
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 function App() {
 
 
+
   return (
-    <> 
-      <CssBaseline />
-      <button variant = "contained">Hello World!</button>
-    </>
+    <Container maxWidth="xs">
+      <Stack >
+        <CssBaseline />
+        <TextField />
+        <Slider />
+        <Button startIcon={<AutoAwesomeIcon />} variant="contained">
+          Submit
+        </Button>
+      </Stack>
+    </Container>
   )
 }
 
