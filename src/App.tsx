@@ -1,9 +1,12 @@
+import { Button , CssBaseline } from '@mui/material'
+
 function App() {
 
 
   return (
-    <>
-      Hello World
+    <> 
+      <CssBaseline />
+      <button variant = "contained">Hello World!</button>
     </>
   )
 }
