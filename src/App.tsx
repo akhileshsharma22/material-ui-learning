@@ -1,4 +1,4 @@
-import { CssBaseline, alpha , Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
+import { CssBaseline, Grid , alpha, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { blue } from '@mui/material/colors'
 import { purple } from '@mui/material/colors'
@@ -48,56 +48,56 @@ const theme = createTheme({
       },
     },
   },
-    typography: {
-      fontFamily: "Poppins",
-    },
+  typography: {
+    fontFamily: "Poppins",
+  },
 
-    components: {
-      MuiButton: {
-        defaultProps: {
-          disableRipple: true,
-          variant: "contained",
-        },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableRipple: true,
+        variant: "contained",
+      },
 
-        styleOverrides: {
-          root: {
-            fontSize: "2rem",
-            variants: [
-              {
-                props: {
-                  variant: "outlined",
-                  color: "secondary",
-                },
-                style: {
-                  fontSize: ".5rem",
-                }
+      styleOverrides: {
+        root: {
+          fontSize: "2rem",
+          variants: [
+            {
+              props: {
+                variant: "outlined",
+                color: "secondary",
               },
-              {
-                props: { variant: "dashed" },
-                style: { border: `4px dashed ${red[500]}` }
+              style: {
+                fontSize: ".5rem",
+              }
+            },
+            {
+              props: { variant: "dashed" },
+              style: { border: `4px dashed ${red[500]}` }
+            },
+            {
+              props: (props) =>
+                props.variant === "dashed" && props.color !== "secondary",
+              style: {
+                border: `2px dashed ${blue[500]}`,
               },
-              {
-                props: (props) =>
-                  props.variant === "dashed" && props.color !== "secondary",
-                style: {
-                  border: `2px dashed ${blue[500]}`,
-                },
-              },
+            },
 
-            ],
-          },
+          ],
         },
       },
-      MuiCssBaseline: {
-        styleOverrides: (theme) => `
+    },
+    MuiCssBaseline: {
+      styleOverrides: (theme) => `
 
       h1{
       color:${theme.palette.success.main};
       }
       `
-      }
-    },
-  })
+    }
+  },
+})
 
 
 function ThemeToggle() {
@@ -119,56 +119,74 @@ function App() {
 
 
   return (
+    // <ThemeProvider theme={theme}>
+    //   <CssBaseline />
+    //   <Container
+    //     sx={{
+    //       display: 'flex',
+    //       justifyContent: 'center',
+    //       alignItems: 'center',
+    //       height: '100vh'
+    //     }}
+    //     maxWidth="xs">
+    //     <Stack gap={2}>
+    //       {/* <CssBaseline />
+    //     <Slider
+    //     disabled sx={{width:100,
+    //        color:'success.main',
+    //       //  ':hover':{
+    //       //   backgroundColor:'yellow'
+    //       //  },
+    //       //  "& .MuiSlider-thumb" : {
+    //       //   ":hover":{
+    //       //     backgroundColor:"blue"
+    //       //   },
+    //       //   backgroundColor: "red",
+    //       //  },
+    //       // "&.Mui-disabled" : {
+    //       //   ".MuiSlider-thumb" : {
+    //       //     backgroundColor: "error.main",
+    //       //   },
+    //       //  },
+
+    //     }}
+
+    //     />
+
+    //       <Button >Hover me</Button> */}
+    //       <CustomSlider error />
+    //       <Button >SUBMIT</Button>
+    //       <Button variant='outlined' color='secondary'>OUTLINED</Button>
+    //       <Button variant='dashed'>DASHED</Button>
+    //       <Button 
+    //       sx={[(theme) => ({backgroundColor: "red"}), (theme) => ({backgroundColor: theme.applyStyles("dark" ,{
+    //         backgroundColor: "blue",
+    //       })})]}
+    //       >DARK/LIGHT</Button>
+    //       <Typography variant='h1'>Hello World</Typography>
+    //       <Typography variant='h2'>Hello World</Typography>
+    //       <ThemeToggle />
+
+    //     </Stack>
+    //   </Container>
+    // </ThemeProvider>
+
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh'
-        }}
-        maxWidth="xs">
-        <Stack gap={2}>
-          {/* <CssBaseline />
-        <Slider
-        disabled sx={{width:100,
-           color:'success.main',
-          //  ':hover':{
-          //   backgroundColor:'yellow'
-          //  },
-          //  "& .MuiSlider-thumb" : {
-          //   ":hover":{
-          //     backgroundColor:"blue"
-          //   },
-          //   backgroundColor: "red",
-          //  },
-          // "&.Mui-disabled" : {
-          //   ".MuiSlider-thumb" : {
-          //     backgroundColor: "error.main",
-          //   },
-          //  },
-          
-        }}
-        
-        />
-
-          <Button >Hover me</Button> */}
-          <CustomSlider error />
-          <Button >SUBMIT</Button>
-          <Button variant='outlined' color='secondary'>OUTLINED</Button>
-          <Button variant='dashed'>DASHED</Button>
-          <Button 
-          sx={[(theme) => ({backgroundColor: "red"}), (theme) => ({backgroundColor: theme.applyStyles("dark" ,{
-            backgroundColor: "blue",
-          })})]}
-          >DARK/LIGHT</Button>
-          <Typography variant='h1'>Hello World</Typography>
-          <Typography variant='h2'>Hello World</Typography>
-          <ThemeToggle />
-
-        </Stack>
-      </Container>
+      <Grid container spacing={2}>
+        <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+        <Button fullWidth>1</Button>
+        </Grid>
+        <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+        <Button fullWidth>2</Button>
+        </Grid>
+        {/* <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+        <Button fullWidth>3</Button>
+        </Grid> */}
+        <Grid size ="grow">
+        <Button fullWidth>3</Button>
+        </Grid>
+      </Grid>
     </ThemeProvider>
   )
 }
