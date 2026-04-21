@@ -1,4 +1,4 @@
-import { CssBaseline, Grid , alpha, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
+import { CssBaseline, useMediaQuery ,Grid , alpha, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { blue } from '@mui/material/colors'
 import { purple } from '@mui/material/colors'
@@ -33,12 +33,12 @@ const CustomSlider = styled(Slider, {
 const theme = createTheme({
 
   breakpoints:{
-    values:{
-      mobile:0,
-      tablet: 640,
-      laptop: 1024,
-      desktop: 1200,
-    },
+    // values:{
+    //   mobile:0,
+    //   tablet: 640,
+    //   laptop: 1024,
+    //   desktop: 1200,
+    // },
   },
 
 
@@ -128,6 +128,8 @@ function ThemeToggle() {
 
 function App() {
 
+  const isTablet = useMediaQuery('(min-width:640px)');
+
 
 
   return (
@@ -201,24 +203,42 @@ function App() {
     //   </Grid>
     // </ThemeProvider>
 
-     <ThemeProvider theme={theme}>
+    //  <ThemeProvider theme={theme}>
+    //   <CssBaseline />
+    //   <Container maxWidth="laptop">
+    //   <Grid container spacing={2}>
+    //     <Grid size = {{ desktop: 12 , md: 6 , xl: 4}}>
+    //     <Button fullWidth>1</Button>
+    //     </Grid>
+    //     <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+    //     <Button fullWidth>2</Button>
+    //     </Grid>
+    //     {/* <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+    //     <Button fullWidth>3</Button>
+    //     </Grid> */}
+    //     <Grid size ="grow">
+    //     <Button fullWidth>3</Button>
+    //     </Grid>
+    //   </Grid>
+    //   </Container>
+    // </ThemeProvider>
+
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="laptop">
-      <Grid container spacing={2}>
-        <Grid size = {{ desktop: 12 , md: 6 , xl: 4}}>
-        <Button fullWidth>1</Button>
-        </Grid>
-        <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
-        <Button fullWidth>2</Button>
-        </Grid>
-        {/* <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
-        <Button fullWidth>3</Button>
-        </Grid> */}
-        <Grid size ="grow">
-        <Button fullWidth>3</Button>
-        </Grid>
-      </Grid>
+      <Container maxWidth="md">
+        <Button
+        sx ={(theme) => ({
+          backgroundColor: "green",
+          [ theme.breakpoints.between('xs','lg')]: {
+            backgroundColor: "cyan",
+        }       })}
+        >RESPONSIVE BUTTON</Button>
+
+
+
       </Container>
+
+      {isTablet ? <>tablet</> : <>not tablet</>}
     </ThemeProvider>
   )
 }
