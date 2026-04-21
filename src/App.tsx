@@ -1,5 +1,6 @@
-import { CssBaseline, Slider, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme } from '@mui/material'
-
+import { CssBaseline, Slider, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
+import { red } from '@mui/material/colors'
+import { blue } from '@mui/material/colors'
 
 type CustomSliderProps = SliderProps & {
   error?: boolean;
@@ -18,12 +19,58 @@ const CustomSlider = styled(Slider, {
       backgroundColor: error ? "red" : "green",
     },
   },
+  "& .MuiSlider-rail": {
+    "&:hover, &.Mui-focusVisible": {
+      backgroundColor: error ? "red" : "blue",
+    },
+  },
+
+
+  
 }));
 
 const theme = createTheme({
 
   typography: {
     fontFamily: "Poppins",
+  },
+
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableRipple: true,
+        variant: "contained",
+      },
+
+      styleOverrides: {
+        root: {
+          fontSize: "2rem",
+          variants:[
+            {
+              props:{
+                variant:"outlined",
+                color:"secondary",
+              },
+              style:{
+                fontSize:".5rem",
+              }
+            },
+            {
+              props:{variant:"dashed"},
+              style:{border:`4px dashed ${red[500]}`}
+            },
+            {
+              props: (props) =>
+                props.variant === "dashed" && props.color !== "secondary",
+              style: {
+                border: `2px dashed ${blue[500]}`,
+            },
+          },
+
+          ],
+        },
+      },
+    },
   },
 })
 
@@ -68,6 +115,8 @@ function App() {
           <Button >Hover me</Button> */}
           <CustomSlider error />
           <Button >SUBMIT</Button>
+          <Button variant='outlined' color='secondary'>OUTLINED</Button>
+          <Button variant='dashed'>DASHED</Button>
 
         </Stack>
       </Container>
