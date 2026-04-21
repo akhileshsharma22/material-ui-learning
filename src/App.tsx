@@ -31,6 +31,18 @@ const CustomSlider = styled(Slider, {
 }));
 
 const theme = createTheme({
+
+  breakpoints:{
+    values:{
+      mobile:0,
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1200,
+    },
+  },
+
+
+
   colorSchemes: {
     dark: {
       palette: {
@@ -171,10 +183,29 @@ function App() {
     //   </Container>
     // </ThemeProvider>
 
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
+    //   <CssBaseline />
+    //   <Grid container spacing={2}>
+    //     <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+    //     <Button fullWidth>1</Button>
+    //     </Grid>
+    //     <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+    //     <Button fullWidth>2</Button>
+    //     </Grid>
+    //     {/* <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+    //     <Button fullWidth>3</Button>
+    //     </Grid> */}
+    //     <Grid size ="grow">
+    //     <Button fullWidth>3</Button>
+    //     </Grid>
+    //   </Grid>
+    // </ThemeProvider>
+
+     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Container maxWidth="laptop">
       <Grid container spacing={2}>
-        <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
+        <Grid size = {{ desktop: 12 , md: 6 , xl: 4}}>
         <Button fullWidth>1</Button>
         </Grid>
         <Grid size = {{ xs: 12 , md: 6 , xl: 4}}>
@@ -187,6 +218,7 @@ function App() {
         <Button fullWidth>3</Button>
         </Grid>
       </Grid>
+      </Container>
     </ThemeProvider>
   )
 }
