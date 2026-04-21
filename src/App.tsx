@@ -1,4 +1,4 @@
-import { CssBaseline, Slider, Stack, Container, Button, styled, type SliderProps } from '@mui/material'
+import { CssBaseline, Slider, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme } from '@mui/material'
 
 
 type CustomSliderProps = SliderProps & {
@@ -20,21 +20,29 @@ const CustomSlider = styled(Slider, {
   },
 }));
 
+const theme = createTheme({
+
+  typography: {
+    fontFamily: "Poppins",
+  },
+})
+
 function App() {
 
 
 
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh'
-      }}
-      maxWidth="xs">
-      <Stack >
-        {/* <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <Container
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh'
+        }}
+        maxWidth="xs">
+        <Stack >
+          {/* <CssBaseline />
         <Slider
         disabled sx={{width:100,
            color:'success.main',
@@ -58,10 +66,12 @@ function App() {
         />
 
           <Button >Hover me</Button> */}
-        <CustomSlider error />
+          <CustomSlider error />
+          <Button >SUBMIT</Button>
 
-      </Stack>
-    </Container>
+        </Stack>
+      </Container>
+    </ThemeProvider>
   )
 }
 
