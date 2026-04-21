@@ -1,4 +1,4 @@
-import { CssBaseline, Slider, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
+import { CssBaseline, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { blue } from '@mui/material/colors'
 
@@ -26,11 +26,19 @@ const CustomSlider = styled(Slider, {
   },
 
 
-  
+
 }));
 
 const theme = createTheme({
-
+  colorSchemes: {
+    dark: {
+      palette: {
+        primary: {
+          main:"#543345"
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: "Poppins",
   },
@@ -45,34 +53,57 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "2rem",
-          variants:[
+          variants: [
             {
-              props:{
-                variant:"outlined",
-                color:"secondary",
+              props: {
+                variant: "outlined",
+                color: "secondary",
               },
-              style:{
-                fontSize:".5rem",
+              style: {
+                fontSize: ".5rem",
               }
             },
             {
-              props:{variant:"dashed"},
-              style:{border:`4px dashed ${red[500]}`}
+              props: { variant: "dashed" },
+              style: { border: `4px dashed ${red[500]}` }
             },
             {
               props: (props) =>
                 props.variant === "dashed" && props.color !== "secondary",
               style: {
                 border: `2px dashed ${blue[500]}`,
+              },
             },
-          },
 
           ],
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: (theme) => `
+
+      h1{
+      color:${theme.palette.success.main};
+      }
+      `
+    }
   },
 })
+
+
+function ThemeToggle() {
+  const { mode, setMode } = useColorScheme();
+  if (!mode) return null;
+
+  return (
+    <RadioGroup value={mode} onChange={(e) => setMode(e.target.value as "system" | "light" | "dark")}>
+      <FormControlLabel control={<Radio />} value="system" label="System" />
+      <FormControlLabel control={<Radio />} value="light" label="Light" />
+      <FormControlLabel control={<Radio />} value="dark" label="Dark" />
+
+    </RadioGroup>
+  )
+}
 
 function App() {
 
@@ -80,6 +111,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container
         sx={{
           display: 'flex',
@@ -88,7 +120,7 @@ function App() {
           height: '100vh'
         }}
         maxWidth="xs">
-        <Stack >
+        <Stack gap={2}>
           {/* <CssBaseline />
         <Slider
         disabled sx={{width:100,
@@ -117,6 +149,9 @@ function App() {
           <Button >SUBMIT</Button>
           <Button variant='outlined' color='secondary'>OUTLINED</Button>
           <Button variant='dashed'>DASHED</Button>
+          <Typography variant='h1'>Hello World</Typography>
+          <Typography variant='h2'>Hello World</Typography>
+          <ThemeToggle />
 
         </Stack>
       </Container>
