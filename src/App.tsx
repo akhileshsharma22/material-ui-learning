@@ -1,6 +1,7 @@
-import { CssBaseline, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
+import { CssBaseline, alpha , Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { blue } from '@mui/material/colors'
+import { purple } from '@mui/material/colors'
 
 type CustomSliderProps = SliderProps & {
   error?: boolean;
@@ -34,61 +35,69 @@ const theme = createTheme({
     dark: {
       palette: {
         primary: {
-          main:"#543345"
+          main: "#543345"
         },
       },
     },
-  },
-  typography: {
-    fontFamily: "Poppins",
-  },
-
-  components: {
-    MuiButton: {
-      defaultProps: {
-        disableRipple: true,
-        variant: "contained",
-      },
-
-      styleOverrides: {
-        root: {
-          fontSize: "2rem",
-          variants: [
-            {
-              props: {
-                variant: "outlined",
-                color: "secondary",
-              },
-              style: {
-                fontSize: ".5rem",
-              }
-            },
-            {
-              props: { variant: "dashed" },
-              style: { border: `4px dashed ${red[500]}` }
-            },
-            {
-              props: (props) =>
-                props.variant === "dashed" && props.color !== "secondary",
-              style: {
-                border: `2px dashed ${blue[500]}`,
-              },
-            },
-
-          ],
+    light: {
+      palette: {
+        primary: {
+          main: alpha('#ff0000', 0.5)
         },
+        secondary: purple,
       },
     },
-    MuiCssBaseline: {
-      styleOverrides: (theme) => `
+  },
+    typography: {
+      fontFamily: "Poppins",
+    },
+
+    components: {
+      MuiButton: {
+        defaultProps: {
+          disableRipple: true,
+          variant: "contained",
+        },
+
+        styleOverrides: {
+          root: {
+            fontSize: "2rem",
+            variants: [
+              {
+                props: {
+                  variant: "outlined",
+                  color: "secondary",
+                },
+                style: {
+                  fontSize: ".5rem",
+                }
+              },
+              {
+                props: { variant: "dashed" },
+                style: { border: `4px dashed ${red[500]}` }
+              },
+              {
+                props: (props) =>
+                  props.variant === "dashed" && props.color !== "secondary",
+                style: {
+                  border: `2px dashed ${blue[500]}`,
+                },
+              },
+
+            ],
+          },
+        },
+      },
+      MuiCssBaseline: {
+        styleOverrides: (theme) => `
 
       h1{
       color:${theme.palette.success.main};
       }
       `
-    }
-  },
-})
+      }
+    },
+  })
 
 
 function ThemeToggle() {
@@ -149,6 +158,11 @@ function App() {
           <Button >SUBMIT</Button>
           <Button variant='outlined' color='secondary'>OUTLINED</Button>
           <Button variant='dashed'>DASHED</Button>
+          <Button 
+          sx={[(theme) => ({backgroundColor: "red"}), (theme) => ({backgroundColor: theme.applyStyles("dark" ,{
+            backgroundColor: "blue",
+          })})]}
+          >DARK/LIGHT</Button>
           <Typography variant='h1'>Hello World</Typography>
           <Typography variant='h2'>Hello World</Typography>
           <ThemeToggle />
