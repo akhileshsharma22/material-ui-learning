@@ -1,4 +1,4 @@
-import { CssBaseline, useMediaQuery ,Grid , alpha, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
+import { CssBaseline, TextField , Autocomplete , useMediaQuery ,Grid , alpha, Radio, useColorScheme, Slider, Typography, FormControlLabel, RadioGroup, ThemeProvider, Stack, Container, Button, styled, type SliderProps, createTheme, } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { blue } from '@mui/material/colors'
 import { purple } from '@mui/material/colors'
@@ -233,6 +233,11 @@ function App() {
             backgroundColor: "cyan",
         }       })}
         >RESPONSIVE BUTTON</Button>
+
+        <Autocomplete
+        sx={{width:300}}
+        renderInput = {(params) => <TextField {...params} label="User" />}
+        options={[]}/>
 
 
 
